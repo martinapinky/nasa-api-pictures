@@ -113,9 +113,9 @@ function saveFavorite(itemUrl) {
         if (item.url.includes(itemUrl) && !favorites[itemUrl]) {
             favorites[itemUrl] = item;
             // Show Save Confirmation for 2 Seconds
-            saveConfirmed.hidden = false;
+            saveConfirmed.classList.remove('hidden');
             setTimeout(() => {
-                saveConfirmed.hidden = true;
+                saveConfirmed.classList.add('hidden');
             }, 2000);
             // Set Favorites in localStorage
             localStorage.setItem('nasaFavorites', JSON.stringify(favorites));
