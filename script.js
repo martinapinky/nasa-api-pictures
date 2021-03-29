@@ -12,7 +12,7 @@ const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${co
 let resultsArray = [];
 let favorites = {};
 
-function showContent(page) {
+const showContent = (page) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'results') {
         resultsNav.classList.remove('hidden');
@@ -24,7 +24,7 @@ function showContent(page) {
     loader.classList.add('hidden');
 }
 
-function createDOMNodes(page) {
+const createDOMNodes = (page) => {
     // console.log(page);
     const currentArray = page === 'results' ? resultsArray : Object.values(favorites);
     currentArray.forEach((result) => {
@@ -82,7 +82,7 @@ function createDOMNodes(page) {
     });
 }
 
-function updateDOM(page) {
+const updateDOM = (page) => {
     // Get Favorites from localStorage
     if (localStorage.getItem('nasaFavorites')) {
         favorites = JSON.parse(localStorage.getItem('nasaFavorites'));
@@ -93,7 +93,7 @@ function updateDOM(page) {
 }
 
 // Get 10 Images from NASA API
-async function getNasaPictures() {
+async function getNasaPictures(){
     // Show Loader
     loader.classList.remove('hidden');
     try {
@@ -107,7 +107,7 @@ async function getNasaPictures() {
 }
 
 // Add result to Favorites
-function saveFavorite(itemUrl) {
+const saveFavorite = (itemUrl) => {
     // Loop through Results Array to select Favorite
     resultsArray.forEach((item) => {
         if (item.url.includes(itemUrl) && !favorites[itemUrl]) {
@@ -124,7 +124,7 @@ function saveFavorite(itemUrl) {
 }
 
 // Remove item from Favorites
-function removeFavorite(itemUrl) {
+const removeFavorite = (itemUrl) => {
     if (favorites[itemUrl]) {
         delete favorites[itemUrl];
     }
